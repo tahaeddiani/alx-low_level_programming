@@ -13,5 +13,6 @@ for (lowcase = 'a'; lowcase <= 'z'; lowcase++)
 {
 putchar(lowcase);
 }
+printf("\n");
 return (0);
 }
