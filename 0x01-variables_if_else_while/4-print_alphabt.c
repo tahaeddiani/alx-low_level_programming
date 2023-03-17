@@ -9,8 +9,8 @@
 int main(void)
 {
 char lowcase, e, q;
-e ='e';
-q ='q';
+e = 'e';
+q = 'q';
 for (lowcase = 'a'; lowcase <= 'z'; lowcase++)
 {
 if (lowcase != e && lowcase != q)
