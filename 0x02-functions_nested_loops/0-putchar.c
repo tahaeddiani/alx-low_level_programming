@@ -1,8 +1,10 @@
 #include "main.h"
 /**
- *main: main
- *Descruiption: putchar
- *Return: Always 0 (Success)
+ * main - Entry point
+ * 
+ * Description: Using _putchar
+ * 
+ * Return: Always 0 (Success)
  */
 int main(void)
 {
