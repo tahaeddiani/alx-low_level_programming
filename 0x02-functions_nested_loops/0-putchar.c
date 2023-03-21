@@ -1,7 +1,7 @@
 #include "main.h"
-/*main void
- *Im Using _putchar
- *
+/*
+ *main
+ *Descruiption: putchar
  * Return: Always 0 (Success)
  */
 int main(void)
@@ -9,7 +9,7 @@ int main(void)
 	char word[9] = "_putchar";
 	int i;
 
-	for (i = 0; i < 9; i++)
+	for (i = 0; i < 8; i++)
 		_putchar(word[i]);
 	_putchar('\n');
 
