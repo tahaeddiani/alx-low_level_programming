@@ -1,8 +1,8 @@
 #include "main.h"
-/*
+/**
  *main: main
  *Descruiption: putchar
- * Return: Always 0 (Success)
+ *Return: Always 0 (Success)
  */
 int main(void)
 {
