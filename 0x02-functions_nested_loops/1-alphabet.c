@@ -2,7 +2,7 @@
 /**
  *main - Entry point
  *
- *Description: Using _putchar
+ *Description: prints the alphabet in lowercase followed by new line
  *
  *Return: Always 0 (Success)
  */
