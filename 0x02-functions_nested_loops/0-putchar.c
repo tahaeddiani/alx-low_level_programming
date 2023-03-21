@@ -1,6 +1,6 @@
 #include "main.h"
 /*
- *main
+ *main: main
  *Descruiption: putchar
  * Return: Always 0 (Success)
  */
