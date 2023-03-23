@@ -1,0 +1,4 @@
+#!/bin/bash
+git add .
+git commit -m 'you cant see me commit'
+git push
