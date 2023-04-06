@@ -2,7 +2,7 @@
 /**
  * _memset - function that fill memory with  constant byte
  *
- *  @s: input pointer to the char type represents the pointer 
+ * @s: input pointer to the char type represents the pointer
  *  block of memory to fill.
  *
  *  @b: input variable of char represents the character to fill
