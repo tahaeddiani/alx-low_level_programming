@@ -15,5 +15,6 @@ int main(int argc, char **argv)
 {
 		printf("%s", argv[loop]);
 }
+	printf("\n");
 	return (0);
 }
