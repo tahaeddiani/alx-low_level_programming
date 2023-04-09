@@ -5,8 +5,8 @@
  * @argv: variable type char.
  * Return: return 0 when success.
  */
-int main(int argc, char void **argv)
+int main(int argc, char __attribute__((unused)) **argv)
 {
-	printf("%i",argc - 1);
+	printf("%d\n", argc - 1);
 	return (0);
 }
