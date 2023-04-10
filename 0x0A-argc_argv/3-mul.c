@@ -9,22 +9,20 @@
  */
 int main(int argc, char *argv[])
 {
-	int i;
-	int mul = 1;
-if (argc > 1)
+	int x, y;
+	int mul;
+if (argc != 3)
 {
-	for (i = 1; i < argc; i++)
-{
-		printf("%s\n", argv[i]);
-	
-mul *= atoi(argv[i]);
-}
+	x = atoi(argv[1];
+	y = atoi(argv[2];
+	mul = (x)*(y);
 	printf("%d\n", mul);
+	return (0);
 }
 	else
 {
 	printf("Error");
 	return (1);
 }
-	return (0);
+	
 }
