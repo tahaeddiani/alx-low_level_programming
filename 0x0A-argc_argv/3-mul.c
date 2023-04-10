@@ -1,7 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- *
  * main - where the main code is.
  * @argc: vriable type intiger
  * @argv: variable type char.
