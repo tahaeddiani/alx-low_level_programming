@@ -9,20 +9,15 @@
  */
 int main(int argc, char *argv[])
 {
-	int x, y;
-	int mul;
+int n1, n2, result;
 if (argc != 3)
 {
-	x = atoi(argv[1];
-	y = atoi(argv[2];
-	mul = (x)*(y);
-	printf("%d\n", mul);
-	return (0);
+printf("Error\n");
+return (1);
 }
-	else
-{
-	printf("Error");
-	return (1);
-}
-	
+n1 = atoi(argv[1]);
+n2 = atoi(argv[2]);
+result = (n1)*(n2);
+printf("%d\n", result);
+return (0);
 }
