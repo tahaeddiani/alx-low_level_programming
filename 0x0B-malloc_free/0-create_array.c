@@ -2,10 +2,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 /**
- *
  * main - the main function
  * @c: type charater
  * @size: type int
+ * create_array - function creates an array of char
  * Return: it return 0 if success
  */
 char *create_array(unsigned int size, char c)
