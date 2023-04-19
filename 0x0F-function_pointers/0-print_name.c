@@ -4,7 +4,7 @@
 
 
 /**
- * print_name_as_is - prints a name as is
+ * print_name_as_is -function prints a name as is
  * @name: name of the person
  * @f: printing function pointer
  * Return: Nothing.
