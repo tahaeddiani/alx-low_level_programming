@@ -7,15 +7,6 @@
  * @len: length of rhe string.
  * @next: points to the next node
  */
-#ifndef LIST_H
-#define LIST_H
-
-/**
- * struct list_s - linked list
- * @str: string - malloc string
- * @len: length of rhe string.
- * @next: points to the next node
- */
 
 typedef struct list_s
 {
