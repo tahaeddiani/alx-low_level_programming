@@ -7,7 +7,7 @@
 
 /**
  * list_len - function that returns the number of elements(list_t)
- * @h: A pointer to the head node //zakaria elaroussi
+ * @h: A pointer to the head node
  *
  * Return: The number of elements in the linked list.
  */
