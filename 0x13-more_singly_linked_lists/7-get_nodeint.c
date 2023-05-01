@@ -18,5 +18,5 @@ current = current->next;
 i++;
 }
 
-return current;
+return (current);
 }
