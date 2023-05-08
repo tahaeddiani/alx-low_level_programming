@@ -2,75 +2,118 @@
 #include <stdlib.h>
 #include <fcntl.h>
 #include <unistd.h>
-#include "main.h"
 
-#define BUF_SIZE 1024
+#define BUFFER_SIZE 1024
+
+int validate_arguments(int argc, char **argv);
+int copy_file(char *src_path, char *dst_path);
 
 /**
-* main - copies contents of one file to another
-* @ac: the number of arguments passed to the program
-* @av: an array of pointers to the arguments
+* main - Entry point
+* @argc: Argument count
+* @argv: Array of pointers to arguments
 *
-* Return: 0 on success, or the corresponding error code on failure
+* Return: Exit status code//Not mine
 */
-int main(int ac, char **av)
+int main(int argc, char **argv)
 {
-int fd_from, fd_to, n_read, n_written;
-char buf[BUF_SIZE];
+int status;
 
-if (ac != 3)
-{
-dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", av[0]);
-return (EXIT_FAILURE);
+if (validate_arguments(argc, argv) != 0)
+return 1;
+
+status = copy_file(argv[1], argv[2]);
+
+return status;
 }
 
-fd_from = open(av[1], O_RDONLY);
-if (fd_from == -1)
+/**
+* validate_arguments - Validates the number of arguments and files
+* @argc: Argument count
+* @argv: Array of pointers to arguments
+*
+* Return: 0 if valid, 1 otherwise
+*/
+int validate_arguments(int argc, char **argv)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-return (EXIT_FAILURE);
+int fd;
+if (argc != 3)
+{
+dprintf(STDERR_FILENO, "Usage: cp file_from file_to\n");
+return 1;
 }
 
-fd_to = open(av[2], O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR | S_IRGRP | S_IWGRP | S_IROTH);
-if (fd_to == -1)
+fd = open(argv[1], O_RDONLY);
+if (fd == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-close(fd_from);
-return (EXIT_FAILURE);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", argv[1]);
+return 1;
+}
+close(fd);
+
+return 0;
 }
 
-while ((n_read = read(fd_from, buf, BUF_SIZE)) > 0)
+/**
+* copy_file - Copies the contents of one file into another
+* @src_path: Path to source file
+* @dst_path: Path to destination file
+*
+* Return: 0 on success or error code on failure
+*/
+int copy_file(char *src_path, char *dst_path)
 {
-n_written = write(fd_to, buf, n_read);
+int src_fd, dst_fd;
+char buffer[BUFFER_SIZE];
+ssize_t n_read, n_written;
+
+src_fd = open(src_path, O_RDONLY);
+if (src_fd == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_path);
+return 98;
+}
+
+dst_fd = open(dst_path, O_WRONLY | O_CREAT | O_TRUNC, 0664);
+if (dst_fd == -1)
+{
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dst_path);
+close(src_fd);
+return 99;
+}
+
+while ((n_read = read(src_fd, buffer, BUFFER_SIZE)) > 0)
+{
+n_written = write(dst_fd, buffer, n_read);
 if (n_written != n_read || n_written == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't write to %s\n", av[2]);
-close(fd_from);
-close(fd_to);
-return (EXIT_FAILURE);
+dprintf(STDERR_FILENO, "Error: Can't write to %s\n", dst_path);
+close(src_fd);
+close(dst_fd);
+return 99;
 }
 }
 
 if (n_read == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", av[1]);
-close(fd_from);
-close(fd_to);
-return (EXIT_FAILURE);
+dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", src_path);
+close(src_fd);
+close(dst_fd);
+return 98;
 }
 
-if (close(fd_from) == -1)
+if (close(src_fd) == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_from);
-close(fd_to);
-return (EXIT_FAILURE);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", src_fd);
+close(dst_fd);
+return 100;
 }
 
-if (close(fd_to) == -1)
+if (close(dst_fd) == -1)
 {
-dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd_to);
-return (EXIT_FAILURE);
+dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", dst_fd);
+return 100;
 }
 
-return (EXIT_SUCCESS);
+return 0;
 }
