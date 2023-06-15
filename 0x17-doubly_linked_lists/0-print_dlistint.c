@@ -17,5 +17,5 @@ current = current->next;
 count++;
 }
 
-return count;
+return (count);
 }
