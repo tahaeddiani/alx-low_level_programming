@@ -13,8 +13,9 @@ dlistint_t *current = head;
 
 while (current != NULL)
 {
+
 if (count == index)
-    return (current);
+return (current);
 
 current = current->next;
 count++;
